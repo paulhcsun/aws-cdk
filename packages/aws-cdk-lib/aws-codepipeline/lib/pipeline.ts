@@ -965,11 +965,21 @@ export class Pipeline extends PipelineBase {
     }
 
     // generate a role in the other stack, that the Pipeline will assume for executing this action
+    const isRemoveRootPrincipal = FeatureFlags.of(this).isEnabled(cxapi.PIPELINE_REDUCE_STAGE_ROLE_TRUST_SCOPE);
+    const roleProps = isRemoveRootPrincipal? {
+      assumedBy: new iam.ArnPrincipal(this.role.roleArn), // Allow only the pipeline execution role
+      roleName: PhysicalName.GENERATE_IF_NEEDED,
+    } : {
+      assumedBy: new iam.AccountPrincipal(pipelineStack.account),
+      roleName: PhysicalName.GENERATE_IF_NEEDED,
+    };
     const ret = new iam.Role(otherAccountStack,
-      `${Names.uniqueId(this)}-${stage.stageName}-${action.actionProperties.actionName}-ActionRole`, {
-        assumedBy: new iam.AccountPrincipal(pipelineStack.account),
-        roleName: PhysicalName.GENERATE_IF_NEEDED,
-      });
+      `${Names.uniqueId(this)}-${stage.stageName}-${action.actionProperties.actionName}-ActionRole`, roleProps);
+    // const ret = new iam.Role(otherAccountStack,
+    //   `${Names.uniqueId(this)}-${stage.stageName}-${action.actionProperties.actionName}-ActionRole`, {
+    //     assumedBy: new iam.AccountPrincipal(pipelineStack.account),
+    //     roleName: PhysicalName.GENERATE_IF_NEEDED,
+    //   });
     // the other stack with the role has to be deployed before the pipeline stack
     // (CodePipeline verifies you can assume the action Role on creation)
     pipelineStack.addDependency(otherAccountStack);
