@@ -965,16 +965,21 @@ export class Pipeline extends PipelineBase {
     }
 
     // generate a role in the other stack, that the Pipeline will assume for executing this action
-    const isRemoveRootPrincipal = FeatureFlags.of(this).isEnabled(cxapi.PIPELINE_REDUCE_STAGE_ROLE_TRUST_SCOPE);
-    const roleProps = isRemoveRootPrincipal? {
-      assumedBy: new iam.ArnPrincipal(this.role.roleArn), // Allow only the pipeline execution role
-      roleName: PhysicalName.GENERATE_IF_NEEDED,
-    } : {
-      assumedBy: new iam.AccountPrincipal(pipelineStack.account),
-      roleName: PhysicalName.GENERATE_IF_NEEDED,
-    };
+
+    // Ensure the referenced role (this.role) has a deterministic name
+    // if (!this.role.roleName) {
+    //   const pipelineRoleName = `${Names.uniqueId(this)}-pipeline-role`;
+    //   (this.role.node.defaultChild as iam.CfnRole).roleName = pipelineRoleName;
+    // }
+
     const ret = new iam.Role(otherAccountStack,
-      `${Names.uniqueId(this)}-${stage.stageName}-${action.actionProperties.actionName}-ActionRole`, roleProps);
+      `${Names.uniqueId(this)}-${stage.stageName}-${action.actionProperties.actionName}-ActionRole`, {
+        assumedBy: this.role,
+        roleName: PhysicalName.GENERATE_IF_NEEDED,
+      });
+
+    // ret.node.addDependency(this.role);
+
     // const ret = new iam.Role(otherAccountStack,
     //   `${Names.uniqueId(this)}-${stage.stageName}-${action.actionProperties.actionName}-ActionRole`, {
     //     assumedBy: new iam.AccountPrincipal(pipelineStack.account),
