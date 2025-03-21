@@ -530,6 +530,7 @@ export class Pipeline extends PipelineBase {
     // If a role has been provided, use it - otherwise, create a role.
     this.role = props.role || new iam.Role(this, 'Role', {
       assumedBy: new iam.ServicePrincipal('codepipeline.amazonaws.com'),
+      roleName: PhysicalName.GENERATE_IF_NEEDED,
     });
 
     const isDefaultV2 = FeatureFlags.of(this).isEnabled(cxapi.CODEPIPELINE_DEFAULT_PIPELINE_TYPE_TO_V2);
@@ -965,26 +966,25 @@ export class Pipeline extends PipelineBase {
     }
 
     // generate a role in the other stack, that the Pipeline will assume for executing this action
-
-    // Ensure the referenced role (this.role) has a deterministic name
-    // if (!this.role.roleName) {
-    //   const pipelineRoleName = `${Names.uniqueId(this)}-pipeline-role`;
-    //   (this.role.node.defaultChild as iam.CfnRole).roleName = pipelineRoleName;
-    // }
+    const isRemoveRootPrincipal = FeatureFlags.of(this).isEnabled(cxapi.PIPELINE_REDUCE_STAGE_ROLE_TRUST_SCOPE);
+    const roleProps = isRemoveRootPrincipal? {
+      assumedBy: new iam.PrincipalWithConditions(
+        new iam.AccountPrincipal(pipelineStack.account),
+        {
+          IpAddress: {
+            'aws:SourceIp': 'codepipeline.amazonaws.com',
+          },
+        },
+      ),
+      roleName: PhysicalName.GENERATE_IF_NEEDED,
+    } : {
+      assumedBy: new iam.AccountPrincipal(pipelineStack.account),
+      roleName: PhysicalName.GENERATE_IF_NEEDED,
+    };
 
     const ret = new iam.Role(otherAccountStack,
-      `${Names.uniqueId(this)}-${stage.stageName}-${action.actionProperties.actionName}-ActionRole`, {
-        assumedBy: this.role,
-        roleName: PhysicalName.GENERATE_IF_NEEDED,
-      });
+      `${Names.uniqueId(this)}-${stage.stageName}-${action.actionProperties.actionName}-ActionRole`, roleProps);
 
-    // ret.node.addDependency(this.role);
-
-    // const ret = new iam.Role(otherAccountStack,
-    //   `${Names.uniqueId(this)}-${stage.stageName}-${action.actionProperties.actionName}-ActionRole`, {
-    //     assumedBy: new iam.AccountPrincipal(pipelineStack.account),
-    //     roleName: PhysicalName.GENERATE_IF_NEEDED,
-    //   });
     // the other stack with the role has to be deployed before the pipeline stack
     // (CodePipeline verifies you can assume the action Role on creation)
     pipelineStack.addDependency(otherAccountStack);
