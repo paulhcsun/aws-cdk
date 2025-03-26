@@ -1,0 +1,34 @@
+{
+  "version": "40.0.0",
+  "files": {
+    "44e9c4d7a5d3fd2d677e1a7e416b2b56f6b0104bd5eff9cac5557b4c65a9dc61": {
+      "source": {
+        "path": "asset.44e9c4d7a5d3fd2d677e1a7e416b2b56f6b0104bd5eff9cac5557b4c65a9dc61",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "924310372990-us-east-1": {
+          "bucketName": "cdk-hnb659fds-assets-924310372990-us-east-1",
+          "objectKey": "44e9c4d7a5d3fd2d677e1a7e416b2b56f6b0104bd5eff9cac5557b4c65a9dc61.zip",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::924310372990:role/cdk-hnb659fds-file-publishing-role-924310372990-us-east-1"
+        }
+      }
+    },
+    "1e304aa90bc62e1dda614fdfc8c8a04c83f52412278cc1eca5d75612b7215585": {
+      "source": {
+        "path": "my26marCodePipelineActionAppStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "924310372990-us-east-1": {
+          "bucketName": "cdk-hnb659fds-assets-924310372990-us-east-1",
+          "objectKey": "1e304aa90bc62e1dda614fdfc8c8a04c83f52412278cc1eca5d75612b7215585.json",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::924310372990:role/cdk-hnb659fds-file-publishing-role-924310372990-us-east-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

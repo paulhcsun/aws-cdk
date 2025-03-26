@@ -1,0 +1,14 @@
+{
+  "version": "40.0.0",
+  "testCases": {
+    "ScDwnCdkCodePipelineActionTest/DefaultTest": {
+      "stacks": [
+        "my26marscdwnCodePipelineActionAppStack",
+        "my26marscdwnDeployActionStack"
+      ],
+      "diffAssets": true,
+      "assertionStack": "ScDwnCdkCodePipelineActionTest/DefaultTest/DeployAssert",
+      "assertionStackName": "ScDwnCdkCodePipelineActionTestDefaultTestDeployAssertF950A4BA"
+    }
+  }
+}

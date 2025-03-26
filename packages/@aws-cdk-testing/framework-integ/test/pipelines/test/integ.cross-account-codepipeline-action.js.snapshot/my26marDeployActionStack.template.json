@@ -1,0 +1,197 @@
+{
+ "Resources": {
+  "my26marCrossAccountDeploymentRoleCBA1242B": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": "arn:aws:iam::924310372990:root"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/AdministratorAccess"
+       ]
+      ]
+     }
+    ],
+    "RoleName": "my26marCrossAccountDeploymentRole"
+   }
+  },
+  "my26marCrossAccountDeploymentRoleDefaultPolicyD14C5F5D": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "iam:PassRole",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "my26marCodePipelineActionAppStackMyPipelineE3607606DeployDeployDeploymentRoleA88188AC",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "s3:GetBucket*",
+        "s3:GetObject*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        "arn:aws:s3:::test-bucket-xaccnt-my26marcodepipelineactionappstack",
+        "arn:aws:s3:::test-bucket-xaccnt-my26marcodepipelineactionappstack/*"
+       ]
+      },
+      {
+       "Action": [
+        "kms:Decrypt",
+        "kms:DescribeKey"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "cloudformation:CreateStack",
+        "cloudformation:DescribeStack*",
+        "cloudformation:GetStackPolicy",
+        "cloudformation:GetTemplate*",
+        "cloudformation:SetStackPolicy",
+        "cloudformation:UpdateStack",
+        "cloudformation:ValidateTemplate"
+       ],
+       "Effect": "Allow",
+       "Resource": "arn:aws:cloudformation:us-east-1:813021164746:stack/MyCrossAccountStack/*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "my26marCrossAccountDeploymentRoleDefaultPolicyD14C5F5D",
+    "Roles": [
+     {
+      "Ref": "my26marCrossAccountDeploymentRoleCBA1242B"
+     }
+    ]
+   }
+  },
+  "my26marCodePipelineActionAppStackMyPipelineE3607606DeployDeployDeploymentRoleA88188AC": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "cloudformation.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "RoleName": "my26mardeployactionstackoydeploymentrole5b41b3eac57ddaaba0e0"
+   }
+  },
+  "my26marCodePipelineActionAppStackMyPipelineE3607606DeployDeployDeploymentRoleDefaultPolicy7E228CFD": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetBucket*",
+        "s3:GetObject*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        "arn:aws:s3:::test-bucket-xaccnt-my26marcodepipelineactionappstack",
+        "arn:aws:s3:::test-bucket-xaccnt-my26marcodepipelineactionappstack/*"
+       ]
+      },
+      {
+       "Action": [
+        "*",
+        "kms:Decrypt",
+        "kms:DescribeKey"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "my26marCodePipelineActionAppStackMyPipelineE3607606DeployDeployDeploymentRoleDefaultPolicy7E228CFD",
+    "Roles": [
+     {
+      "Ref": "my26marCodePipelineActionAppStackMyPipelineE3607606DeployDeployDeploymentRoleA88188AC"
+     }
+    ]
+   }
+  }
+ },
+ "Outputs": {
+  "my26marCrossAccountDeploymentRoleArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "my26marCrossAccountDeploymentRoleCBA1242B",
+     "Arn"
+    ]
+   },
+   "Export": {
+    "Name": "my26marCrossAccountDeploymentRoleArn"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

@@ -1,15 +1,4 @@
 {
- "Resources": {
-  "MyQueueE6CA6235": {
-   "Type": "AWS::SQS::Queue",
-   "Properties": {
-    "QueueName": "prod-queue",
-    "VisibilityTimeout": 300
-   },
-   "UpdateReplacePolicy": "Delete",
-   "DeletionPolicy": "Delete"
-  }
- },
  "Parameters": {
   "BootstrapVersion": {
    "Type": "AWS::SSM::Parameter::Value<String>",
