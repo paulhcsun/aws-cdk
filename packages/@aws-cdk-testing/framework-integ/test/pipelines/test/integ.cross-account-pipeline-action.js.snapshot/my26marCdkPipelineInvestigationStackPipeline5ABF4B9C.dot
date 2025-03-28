@@ -1,0 +1,77 @@
+digraph G {
+  # Arrows represent an "unlocks" relationship (opposite of dependency). So chosen
+  # because the layout looks more natural that way.
+  # To represent subgraph dependencies, subgraphs are represented by BEGIN/END nodes.
+  # To render: `dot -Tsvg my26marCdkPipelineInvestigationStackPipeline5ABF4B9C.dot > graph.svg`, open in a browser.
+  node [shape="box"];
+"BEGIN Build" [shape="cds", style="filled", fillcolor="#b7deff"];
+"END Build" [shape="cds", style="filled", fillcolor="#b7deff"];
+"Build.Synth";
+"Source.c8f5120f9f26b970ecaa01964c85ed90076e53cb16" -> "Build.Synth";
+"BEGIN Build" -> "Build.Synth";
+"Build.Synth" -> "END Build";
+"BEGIN UpdatePipeline" [shape="cds", style="filled", fillcolor="#b7deff"];
+"END UpdatePipeline" [shape="cds", style="filled", fillcolor="#b7deff"];
+"UpdatePipeline.SelfMutate";
+"Build.Synth" -> "UpdatePipeline.SelfMutate";
+"BEGIN UpdatePipeline" -> "UpdatePipeline.SelfMutate";
+"UpdatePipeline.SelfMutate" -> "END UpdatePipeline";
+"BEGIN DEV-and-QA-Deployments" [shape="cds", style="filled", fillcolor="#b7deff"];
+"END DEV-and-QA-Deployments" [shape="cds", style="filled", fillcolor="#b7deff"];
+"UpdatePipeline.SelfMutate" -> "BEGIN DEV-and-QA-Deployments";
+"BEGIN DEV-and-QA-Deployments.dev" [shape="cds", style="filled", fillcolor="#b7deff"];
+"END DEV-and-QA-Deployments.dev" [shape="cds", style="filled", fillcolor="#b7deff"];
+"BEGIN DEV-and-QA-Deployments.dev.AppStack" [shape="cds", style="filled", fillcolor="#b7deff"];
+"END DEV-and-QA-Deployments.dev.AppStack" [shape="cds", style="filled", fillcolor="#b7deff"];
+"DEV-and-QA-Deployments.dev.AppStack.Deploy";
+"Build.Synth" -> "DEV-and-QA-Deployments.dev.AppStack.Deploy";
+"BEGIN DEV-and-QA-Deployments.dev.AppStack" -> "DEV-and-QA-Deployments.dev.AppStack.Deploy";
+"DEV-and-QA-Deployments.dev.AppStack.Deploy" -> "END DEV-and-QA-Deployments.dev.AppStack";
+"BEGIN DEV-and-QA-Deployments.dev" -> "BEGIN DEV-and-QA-Deployments.dev.AppStack";
+"END DEV-and-QA-Deployments.dev.AppStack" -> "END DEV-and-QA-Deployments.dev";
+"BEGIN DEV-and-QA-Deployments.qa" [shape="cds", style="filled", fillcolor="#b7deff"];
+"END DEV-and-QA-Deployments.qa" [shape="cds", style="filled", fillcolor="#b7deff"];
+"BEGIN DEV-and-QA-Deployments.qa.AppStack" [shape="cds", style="filled", fillcolor="#b7deff"];
+"END DEV-and-QA-Deployments.qa.AppStack" [shape="cds", style="filled", fillcolor="#b7deff"];
+"DEV-and-QA-Deployments.qa.AppStack.Deploy";
+"Build.Synth" -> "DEV-and-QA-Deployments.qa.AppStack.Deploy";
+"BEGIN DEV-and-QA-Deployments.qa.AppStack" -> "DEV-and-QA-Deployments.qa.AppStack.Deploy";
+"DEV-and-QA-Deployments.qa.AppStack.Deploy" -> "END DEV-and-QA-Deployments.qa.AppStack";
+"BEGIN DEV-and-QA-Deployments.qa" -> "BEGIN DEV-and-QA-Deployments.qa.AppStack";
+"END DEV-and-QA-Deployments.qa.AppStack" -> "END DEV-and-QA-Deployments.qa";
+"BEGIN DEV-and-QA-Deployments.stg" [shape="cds", style="filled", fillcolor="#b7deff"];
+"END DEV-and-QA-Deployments.stg" [shape="cds", style="filled", fillcolor="#b7deff"];
+"BEGIN DEV-and-QA-Deployments.stg.AppStack" [shape="cds", style="filled", fillcolor="#b7deff"];
+"END DEV-and-QA-Deployments.stg.AppStack" [shape="cds", style="filled", fillcolor="#b7deff"];
+"DEV-and-QA-Deployments.stg.AppStack.Deploy";
+"Build.Synth" -> "DEV-and-QA-Deployments.stg.AppStack.Deploy";
+"BEGIN DEV-and-QA-Deployments.stg.AppStack" -> "DEV-and-QA-Deployments.stg.AppStack.Deploy";
+"DEV-and-QA-Deployments.stg.AppStack.Deploy" -> "END DEV-and-QA-Deployments.stg.AppStack";
+"BEGIN DEV-and-QA-Deployments.stg" -> "BEGIN DEV-and-QA-Deployments.stg.AppStack";
+"END DEV-and-QA-Deployments.stg.AppStack" -> "END DEV-and-QA-Deployments.stg";
+"BEGIN DEV-and-QA-Deployments" -> "BEGIN DEV-and-QA-Deployments.dev";
+"BEGIN DEV-and-QA-Deployments" -> "BEGIN DEV-and-QA-Deployments.qa";
+"BEGIN DEV-and-QA-Deployments" -> "BEGIN DEV-and-QA-Deployments.stg";
+"END DEV-and-QA-Deployments.dev" -> "END DEV-and-QA-Deployments";
+"END DEV-and-QA-Deployments.qa" -> "END DEV-and-QA-Deployments";
+"END DEV-and-QA-Deployments.stg" -> "END DEV-and-QA-Deployments";
+"BEGIN prd-primary" [shape="cds", style="filled", fillcolor="#b7deff"];
+"END prd-primary" [shape="cds", style="filled", fillcolor="#b7deff"];
+"UpdatePipeline.SelfMutate" -> "BEGIN prd-primary";
+"END DEV-and-QA-Deployments" -> "BEGIN prd-primary";
+"BEGIN prd-primary.AppStack" [shape="cds", style="filled", fillcolor="#b7deff"];
+"END prd-primary.AppStack" [shape="cds", style="filled", fillcolor="#b7deff"];
+"prd-primary.ProdManualApproval" -> "BEGIN prd-primary.AppStack";
+"prd-primary.AppStack.Deploy";
+"Build.Synth" -> "prd-primary.AppStack.Deploy";
+"BEGIN prd-primary.AppStack" -> "prd-primary.AppStack.Deploy";
+"prd-primary.AppStack.Deploy" -> "END prd-primary.AppStack";
+"prd-primary.ProdManualApproval";
+"BEGIN prd-primary" -> "prd-primary.ProdManualApproval";
+"END prd-primary.AppStack" -> "END prd-primary";
+"BEGIN Source" [shape="cds", style="filled", fillcolor="#b7deff"];
+"END Source" [shape="cds", style="filled", fillcolor="#b7deff"];
+"Source.c8f5120f9f26b970ecaa01964c85ed90076e53cb16";
+"BEGIN Source" -> "Source.c8f5120f9f26b970ecaa01964c85ed90076e53cb16";
+"Source.c8f5120f9f26b970ecaa01964c85ed90076e53cb16" -> "END Source";
+}

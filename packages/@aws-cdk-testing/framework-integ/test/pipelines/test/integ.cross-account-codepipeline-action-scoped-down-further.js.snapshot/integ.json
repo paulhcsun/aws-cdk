@@ -1,0 +1,14 @@
+{
+  "version": "40.0.0",
+  "testCases": {
+    "my27marscdwnCdkCodePipelineActionTest/DefaultTest": {
+      "stacks": [
+        "my26marmy27marscdwnCodePipelineActionAppStack",
+        "my26marmy27marscdwnDeployActionStack"
+      ],
+      "diffAssets": true,
+      "assertionStack": "my27marscdwnCdkCodePipelineActionTest/DefaultTest/DeployAssert",
+      "assertionStackName": "my27marscdwnCdkCodePipelineActionTestDefaultTestDeployAssert5B33499A"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "version": "40.0.0",
+  "testCases": {
+    "my26marCdkPipelineInvestigationTest/DefaultTest": {
+      "stacks": [
+        "my26marCrossAccountSourceStack",
+        "my26marCdkPipelineInvestigationStack"
+      ],
+      "diffAssets": true,
+      "assertionStack": "my26marCdkPipelineInvestigationTest/DefaultTest/DeployAssert",
+      "assertionStackName": "my26marCdkPipelineInvestigationTestDefaultTestDeployAssertA37C1330"
+    }
+  }
+}
