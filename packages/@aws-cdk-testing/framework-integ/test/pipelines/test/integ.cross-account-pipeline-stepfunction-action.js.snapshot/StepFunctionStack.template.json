@@ -1,0 +1,114 @@
+{
+ "Resources": {
+  "CrossAccountStateMachineRoleBF02B6D5": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "states.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   }
+  },
+  "CrossAccountStateMachineA8361228": {
+   "Type": "AWS::StepFunctions::StateMachine",
+   "Properties": {
+    "DefinitionString": "{\"StartAt\":\"SimplePass\",\"States\":{\"SimplePass\":{\"Type\":\"Pass\",\"End\":true}}}",
+    "RoleArn": {
+     "Fn::GetAtt": [
+      "CrossAccountStateMachineRoleBF02B6D5",
+      "Arn"
+     ]
+    },
+    "StateMachineName": "MyCrossAccountStateMachine"
+   },
+   "DependsOn": [
+    "CrossAccountStateMachineRoleBF02B6D5"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "CrossAccountInvocationRole0179ADA9": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": "arn:aws:iam::924310372990:root"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "RoleName": "StepFunctionInvocationRole"
+   }
+  },
+  "CrossAccountInvocationRoleDefaultPolicy1C7F3C4D": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "states:StartExecution",
+       "Effect": "Allow",
+       "Resource": {
+        "Ref": "CrossAccountStateMachineA8361228"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "CrossAccountInvocationRoleDefaultPolicy1C7F3C4D",
+    "Roles": [
+     {
+      "Ref": "CrossAccountInvocationRole0179ADA9"
+     }
+    ]
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

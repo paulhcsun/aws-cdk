@@ -3,8 +3,8 @@
   "testCases": {
     "my27marscdwnCdkCodePipelineActionTest/DefaultTest": {
       "stacks": [
-        "my26marmy27marscdwnCodePipelineActionAppStack",
-        "my26marmy27marscdwnDeployActionStack"
+        "my27marscdwnCodePipelineActionAppStack",
+        "my27marscdwnDeployActionStack"
       ],
       "diffAssets": true,
       "assertionStack": "my27marscdwnCdkCodePipelineActionTest/DefaultTest/DeployAssert",

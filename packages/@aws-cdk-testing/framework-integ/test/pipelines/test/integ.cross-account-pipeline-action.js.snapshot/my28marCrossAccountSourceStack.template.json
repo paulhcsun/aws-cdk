@@ -3,14 +3,14 @@
   "iSourceBucket1F85A092": {
    "Type": "AWS::S3::Bucket",
    "Properties": {
-    "BucketName": "itestcross-account-source-my26marcrossaccountsourcestack",
+    "BucketName": "itestcross-account-source-28-mar-tstrn2",
     "Tags": [
      {
       "Key": "aws-cdk:auto-delete-objects",
       "Value": "true"
      },
      {
-      "Key": "aws-cdk:cr-owned:557163fe",
+      "Key": "aws-cdk:cr-owned:2f56eda8",
       "Value": "true"
      }
     ],
@@ -313,18 +313,13 @@
     "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265"
    ]
   },
-  "my26marCdkPipelineInvestigationStackPipelineFFBF0F08SourceS3SourceActionRole3407FB2D": {
+  "my28marCdkPipelineInvestigationStackPipelineD8C493A0SourceS3SourceActionRole7356FDBE": {
    "Type": "AWS::IAM::Role",
    "Properties": {
     "AssumeRolePolicyDocument": {
      "Statement": [
       {
        "Action": "sts:AssumeRole",
-       "Condition": {
-        "ArnLike": {
-         "aws:PrincipalArn": "arn:*:iam::924310372990:role/my26marcdkpipelineinvestitackpipelinerolef12645a61d69c703233a"
-        }
-       },
        "Effect": "Allow",
        "Principal": {
         "AWS": "arn:aws:iam::924310372990:root"
@@ -333,10 +328,10 @@
      ],
      "Version": "2012-10-17"
     },
-    "RoleName": "my26marcrossaccountsourcesourceactionrole83ddf6c36ef626c3abcb"
+    "RoleName": "my28marcrossaccountsourcesourceactionrole1654be373132b6a1a708"
    }
   },
-  "my26marCdkPipelineInvestigationStackPipelineFFBF0F08SourceS3SourceActionRoleDefaultPolicy1CFE5568": {
+  "my28marCdkPipelineInvestigationStackPipelineD8C493A0SourceS3SourceActionRoleDefaultPolicy30C16149": {
    "Type": "AWS::IAM::Policy",
    "Properties": {
     "PolicyDocument": {
@@ -383,8 +378,8 @@
        ],
        "Effect": "Allow",
        "Resource": [
-        "arn:aws:s3:::my26marcdkpipelineinvestieartifactsbucket43c7d169ce1940f39656",
-        "arn:aws:s3:::my26marcdkpipelineinvestieartifactsbucket43c7d169ce1940f39656/*"
+        "arn:aws:s3:::my28marcdkpipelineinvestieartifactsbucket5760c1be96c97dbc56a4",
+        "arn:aws:s3:::my28marcdkpipelineinvestieartifactsbucket5760c1be96c97dbc56a4/*"
        ]
       },
       {
@@ -400,10 +395,10 @@
      ],
      "Version": "2012-10-17"
     },
-    "PolicyName": "my26marCdkPipelineInvestigationStackPipelineFFBF0F08SourceS3SourceActionRoleDefaultPolicy1CFE5568",
+    "PolicyName": "my28marCdkPipelineInvestigationStackPipelineD8C493A0SourceS3SourceActionRoleDefaultPolicy30C16149",
     "Roles": [
      {
-      "Ref": "my26marCdkPipelineInvestigationStackPipelineFFBF0F08SourceS3SourceActionRole3407FB2D"
+      "Ref": "my28marCdkPipelineInvestigationStackPipelineD8C493A0SourceS3SourceActionRole7356FDBE"
      }
     ]
    }

@@ -1,6 +1,6 @@
 {
  "Resources": {
-  "my27marscdwnCrossAccountDeploymentRoleE985058F": {
+  "scdwnfrCrossAccountDeploymentRole746CD2C7": {
    "Type": "AWS::IAM::Role",
    "Properties": {
     "AssumeRolePolicyDocument": {
@@ -9,17 +9,73 @@
        "Action": "sts:AssumeRole",
        "Effect": "Allow",
        "Principal": {
-        "AWS": "arn:aws:iam::924310372990:root",
-        "Service": "codepipeline.amazonaws.com"
+        "AWS": "arn:aws:iam::924310372990:root"
        }
       }
      ],
      "Version": "2012-10-17"
     },
-    "RoleName": "my27marscdwnCrossAccountDeploymentRole"
+    "Policies": [
+     {
+      "PolicyDocument": {
+       "Statement": [
+        {
+         "Action": [
+          "cloudformation:CreateStack",
+          "cloudformation:DeleteStack",
+          "cloudformation:DescribeStackEvents",
+          "cloudformation:DescribeStacks",
+          "cloudformation:GetTemplateSummary",
+          "cloudformation:UpdateStack",
+          "cloudformation:ValidateTemplate"
+         ],
+         "Effect": "Allow",
+         "Resource": "arn:aws:cloudformation:us-east-1:813021164746:stack/*"
+        },
+        {
+         "Action": [
+          "ssm:GetParameter",
+          "ssm:GetParameters",
+          "ssm:GetParametersByPath"
+         ],
+         "Effect": "Allow",
+         "Resource": "arn:aws:ssm:us-east-1:813021164746:parameter/cdk-bootstrap/*"
+        },
+        {
+         "Action": [
+          "s3:GetObject",
+          "s3:ListBucket",
+          "s3:PutObject"
+         ],
+         "Effect": "Allow",
+         "Resource": [
+          "arn:aws:s3:::cdk-hnb659fds-assets-813021164746-us-east-1",
+          "arn:aws:s3:::cdk-hnb659fds-assets-813021164746-us-east-1/*"
+         ]
+        },
+        {
+         "Action": [
+          "iam:CreateRole",
+          "iam:DeleteRole",
+          "iam:DeleteRolePolicy",
+          "iam:GetRole",
+          "iam:GetRolePolicy",
+          "iam:PassRole",
+          "iam:PutRolePolicy"
+         ],
+         "Effect": "Allow",
+         "Resource": "arn:aws:iam::813021164746:role/*"
+        }
+       ],
+       "Version": "2012-10-17"
+      },
+      "PolicyName": "CloudFormationDeployment"
+     }
+    ],
+    "RoleName": "scdwnfrCrossAccountDeploymentRole"
    }
   },
-  "my27marscdwnCrossAccountDeploymentRoleDefaultPolicyE731EEB4": {
+  "scdwnfrCrossAccountDeploymentRoleDefaultPolicy1ED38D67": {
    "Type": "AWS::IAM::Policy",
    "Properties": {
     "PolicyDocument": {
@@ -29,7 +85,7 @@
        "Effect": "Allow",
        "Resource": {
         "Fn::GetAtt": [
-         "my26marmy27marscdwnCodePipelineActionAppStackMyPipelineCEE1280ADeployDeployDeploymentRole251C411D",
+         "my27marscdwnCodePipelineActionAppStackMyPipeline9553AF91DeployDeployDeploymentRoleF5480086",
          "Arn"
         ]
        }
@@ -70,15 +126,15 @@
      ],
      "Version": "2012-10-17"
     },
-    "PolicyName": "my27marscdwnCrossAccountDeploymentRoleDefaultPolicyE731EEB4",
+    "PolicyName": "scdwnfrCrossAccountDeploymentRoleDefaultPolicy1ED38D67",
     "Roles": [
      {
-      "Ref": "my27marscdwnCrossAccountDeploymentRoleE985058F"
+      "Ref": "scdwnfrCrossAccountDeploymentRole746CD2C7"
      }
     ]
    }
   },
-  "my26marmy27marscdwnCodePipelineActionAppStackMyPipelineCEE1280ADeployDeployDeploymentRole251C411D": {
+  "my27marscdwnCodePipelineActionAppStackMyPipeline9553AF91DeployDeployDeploymentRoleF5480086": {
    "Type": "AWS::IAM::Role",
    "Properties": {
     "AssumeRolePolicyDocument": {
@@ -93,10 +149,10 @@
      ],
      "Version": "2012-10-17"
     },
-    "RoleName": "my26marmy27marscdwndeployoydeploymentrole84450d23e0169ecf6a0d"
+    "RoleName": "my27marscdwndeployactionsoydeploymentrolecd3ceb30fc2f4b52cde4"
    }
   },
-  "my26marmy27marscdwnCodePipelineActionAppStackMyPipelineCEE1280ADeployDeployDeploymentRoleDefaultPolicy91BF5CB7": {
+  "my27marscdwnCodePipelineActionAppStackMyPipeline9553AF91DeployDeployDeploymentRoleDefaultPolicy27EF603D": {
    "Type": "AWS::IAM::Policy",
    "Properties": {
     "PolicyDocument": {
@@ -124,10 +180,10 @@
      ],
      "Version": "2012-10-17"
     },
-    "PolicyName": "my26marmy27marscdwnCodePipelineActionAppStackMyPipelineCEE1280ADeployDeployDeploymentRoleDefaultPolicy91BF5CB7",
+    "PolicyName": "my27marscdwnCodePipelineActionAppStackMyPipeline9553AF91DeployDeployDeploymentRoleDefaultPolicy27EF603D",
     "Roles": [
      {
-      "Ref": "my26marmy27marscdwnCodePipelineActionAppStackMyPipelineCEE1280ADeployDeployDeploymentRole251C411D"
+      "Ref": "my27marscdwnCodePipelineActionAppStackMyPipeline9553AF91DeployDeployDeploymentRoleF5480086"
      }
     ]
    }

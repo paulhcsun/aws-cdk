@@ -2,12 +2,12 @@ digraph G {
   # Arrows represent an "unlocks" relationship (opposite of dependency). So chosen
   # because the layout looks more natural that way.
   # To represent subgraph dependencies, subgraphs are represented by BEGIN/END nodes.
-  # To render: `dot -Tsvg my26marCdkPipelineInvestigationStackPipeline5ABF4B9C.dot > graph.svg`, open in a browser.
+  # To render: `dot -Tsvg my28marCdkPipelineInvestigationStackPipelineF44C3A7C.dot > graph.svg`, open in a browser.
   node [shape="box"];
 "BEGIN Build" [shape="cds", style="filled", fillcolor="#b7deff"];
 "END Build" [shape="cds", style="filled", fillcolor="#b7deff"];
 "Build.Synth";
-"Source.c8f5120f9f26b970ecaa01964c85ed90076e53cb16" -> "Build.Synth";
+"Source.c870817727bef081fba44dbe843fa15ce7281541f1" -> "Build.Synth";
 "BEGIN Build" -> "Build.Synth";
 "Build.Synth" -> "END Build";
 "BEGIN UpdatePipeline" [shape="cds", style="filled", fillcolor="#b7deff"];
@@ -71,7 +71,7 @@ digraph G {
 "END prd-primary.AppStack" -> "END prd-primary";
 "BEGIN Source" [shape="cds", style="filled", fillcolor="#b7deff"];
 "END Source" [shape="cds", style="filled", fillcolor="#b7deff"];
-"Source.c8f5120f9f26b970ecaa01964c85ed90076e53cb16";
-"BEGIN Source" -> "Source.c8f5120f9f26b970ecaa01964c85ed90076e53cb16";
-"Source.c8f5120f9f26b970ecaa01964c85ed90076e53cb16" -> "END Source";
+"Source.c870817727bef081fba44dbe843fa15ce7281541f1";
+"BEGIN Source" -> "Source.c870817727bef081fba44dbe843fa15ce7281541f1";
+"Source.c870817727bef081fba44dbe843fa15ce7281541f1" -> "END Source";
 }

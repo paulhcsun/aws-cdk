@@ -1,15 +1,15 @@
 {
   "version": "40.0.0",
   "files": {
-    "f5be94d71be4f01043c3779df3ca8cc4bc1a41e526dc6c1665efb694e2b4c8b6": {
+    "f83512fe4b7090be642460fc2444c96b427d072f00666d05e794f2b09cf14e78": {
       "source": {
-        "path": "my26marCdkPipelineInvestigationStackprdprimaryAppStack1CA8BE84.template.json",
+        "path": "StepFunctionStack.template.json",
         "packaging": "file"
       },
       "destinations": {
         "813021164746-us-east-1": {
           "bucketName": "cdk-hnb659fds-assets-813021164746-us-east-1",
-          "objectKey": "f5be94d71be4f01043c3779df3ca8cc4bc1a41e526dc6c1665efb694e2b4c8b6.json",
+          "objectKey": "f83512fe4b7090be642460fc2444c96b427d072f00666d05e794f2b09cf14e78.json",
           "region": "us-east-1",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::813021164746:role/cdk-hnb659fds-file-publishing-role-813021164746-us-east-1"
         }

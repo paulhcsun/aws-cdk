@@ -1,0 +1,20 @@
+{
+  "version": "40.0.0",
+  "files": {
+    "19251a31c91e7a5d75d23a8058d76f8b43eb9046f5581d01995b1f3859005150": {
+      "source": {
+        "path": "my27marscdwnDeployActionStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "813021164746-us-east-1": {
+          "bucketName": "cdk-hnb659fds-assets-813021164746-us-east-1",
+          "objectKey": "19251a31c91e7a5d75d23a8058d76f8b43eb9046f5581d01995b1f3859005150.json",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::813021164746:role/cdk-hnb659fds-file-publishing-role-813021164746-us-east-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

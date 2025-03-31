@@ -1,19 +1,19 @@
 {
   "version": "40.0.0",
   "artifacts": {
-    "my26marCdkPipelineInvestigationStackdevAppStack0B055FE0.assets": {
+    "my28marCdkPipelineInvestigationStackqaAppStack91E74936.assets": {
       "type": "cdk:asset-manifest",
       "properties": {
-        "file": "my26marCdkPipelineInvestigationStackdevAppStack0B055FE0.assets.json",
+        "file": "my28marCdkPipelineInvestigationStackqaAppStack91E74936.assets.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
       }
     },
-    "my26marCdkPipelineInvestigationStackdevAppStack0B055FE0": {
+    "my28marCdkPipelineInvestigationStackqaAppStack91E74936": {
       "type": "aws:cloudformation:stack",
       "environment": "aws://924310372990/us-east-1",
       "properties": {
-        "templateFile": "my26marCdkPipelineInvestigationStackdevAppStack0B055FE0.template.json",
+        "templateFile": "my28marCdkPipelineInvestigationStackqaAppStack91E74936.template.json",
         "terminationProtection": false,
         "validateOnSynth": true,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::924310372990:role/cdk-hnb659fds-deploy-role-924310372990-us-east-1",
@@ -22,20 +22,20 @@
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
-          "my26marCdkPipelineInvestigationStackdevAppStack0B055FE0.assets"
+          "my28marCdkPipelineInvestigationStackqaAppStack91E74936.assets"
         ],
         "lookupRole": {
           "arn": "arn:${AWS::Partition}:iam::924310372990:role/cdk-hnb659fds-lookup-role-924310372990-us-east-1",
           "requiresBootstrapStackVersion": 8,
           "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
         },
-        "stackName": "dev-AppStack"
+        "stackName": "qa-AppStack"
       },
       "dependencies": [
-        "my26marCdkPipelineInvestigationStackdevAppStack0B055FE0.assets"
+        "my28marCdkPipelineInvestigationStackqaAppStack91E74936.assets"
       ],
       "metadata": {
-        "/my26marCdkPipelineInvestigationStack/dev/AppStack/MyQueue": [
+        "/my28marCdkPipelineInvestigationStack/qa/AppStack/MyQueue": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": {
@@ -44,26 +44,26 @@
             }
           }
         ],
-        "/my26marCdkPipelineInvestigationStack/dev/AppStack/MyQueue/Resource": [
+        "/my28marCdkPipelineInvestigationStack/qa/AppStack/MyQueue/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyQueueE6CA6235"
           }
         ],
-        "/my26marCdkPipelineInvestigationStack/dev/AppStack/BootstrapVersion": [
+        "/my28marCdkPipelineInvestigationStack/qa/AppStack/BootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BootstrapVersion"
           }
         ],
-        "/my26marCdkPipelineInvestigationStack/dev/AppStack/CheckBootstrapVersion": [
+        "/my28marCdkPipelineInvestigationStack/qa/AppStack/CheckBootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CheckBootstrapVersion"
           }
         ]
       },
-      "displayName": "my26marCdkPipelineInvestigationStack/dev/AppStack"
+      "displayName": "my28marCdkPipelineInvestigationStack/qa/AppStack"
     }
   }
 }

@@ -21,7 +21,7 @@ class SourceStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    const bucketName = `itestcross-account-source-${cdk.Names.uniqueId(this).toLowerCase()}`;
+    const bucketName = 'itestcross-account-source-28-mar-tstrn2';
 
     this.sourceBucket = new s3.Bucket(this, 'iSourceBucket', {
       bucketName,
@@ -102,18 +102,18 @@ class PipelineStack extends Stack {
 
 const app = new App({
   postCliContext: {
-    '@aws-cdk/pipelines:reduceStageRoleTrustScope': true,
+    '@aws-cdk/pipelines:reduceStageRoleTrustScope': false,
   },
 });
 
-const sourceStack = new SourceStack(app, 'my26marCrossAccountSourceStack', {
+const sourceStack = new SourceStack(app, 'my28marCrossAccountSourceStack', {
   env: {
     account: SOURCE_ACCOUNT,
     region: REGION,
   },
 });
 
-const pipelineStack = new PipelineStack(app, 'my26marCdkPipelineInvestigationStack',
+const pipelineStack = new PipelineStack(app, 'my28marCdkPipelineInvestigationStack',
   sourceStack.sourceBucket,
   {
     env: {

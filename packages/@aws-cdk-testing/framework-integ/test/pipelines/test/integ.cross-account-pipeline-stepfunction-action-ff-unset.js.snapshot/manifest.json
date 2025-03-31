@@ -1,0 +1,711 @@
+{
+  "version": "40.0.0",
+  "artifacts": {
+    "StepFunctionStackFFunset.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "StepFunctionStackFFunset.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "StepFunctionStackFFunset": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://813021164746/us-east-1",
+      "properties": {
+        "templateFile": "StepFunctionStackFFunset.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::813021164746:role/cdk-hnb659fds-deploy-role-813021164746-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::813021164746:role/cdk-hnb659fds-cfn-exec-role-813021164746-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-813021164746-us-east-1/04b75b439d2f01c19cf04a2eada141e15dbddf69073c2c2829c827bd1684066d.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "StepFunctionStackFFunset.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::813021164746:role/cdk-hnb659fds-lookup-role-813021164746-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "StepFunctionStackFFunset.assets"
+      ],
+      "metadata": {
+        "/StepFunctionStackFFunset/CrossAccountStateMachineFFunset": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "stateMachineName": "*",
+              "definition": "*"
+            }
+          }
+        ],
+        "/StepFunctionStackFFunset/CrossAccountStateMachineFFunset/Role": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "assumedBy": {
+                "principalAccount": "*",
+                "assumeRoleAction": "*"
+              }
+            }
+          }
+        ],
+        "/StepFunctionStackFFunset/CrossAccountStateMachineFFunset/Role/ImportRole": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          }
+        ],
+        "/StepFunctionStackFFunset/CrossAccountStateMachineFFunset/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrossAccountStateMachineFFunsetRoleE48C4704"
+          }
+        ],
+        "/StepFunctionStackFFunset/CrossAccountStateMachineFFunset/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrossAccountStateMachineFFunsetCF191A64"
+          }
+        ],
+        "/StepFunctionStackFFunset/CrossAccountInvocationRoleFFunset": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "roleName": "*",
+              "assumedBy": {
+                "principalAccount": "*",
+                "assumeRoleAction": "*"
+              }
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addToPrincipalPolicy": [
+                {}
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachInlinePolicy": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachInlinePolicy": [
+                "*"
+              ]
+            }
+          }
+        ],
+        "/StepFunctionStackFFunset/CrossAccountInvocationRoleFFunset/ImportCrossAccountInvocationRoleFFunset": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          }
+        ],
+        "/StepFunctionStackFFunset/CrossAccountInvocationRoleFFunset/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrossAccountInvocationRoleFFunset4949840E"
+          }
+        ],
+        "/StepFunctionStackFFunset/CrossAccountInvocationRoleFFunset/DefaultPolicy": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachToRole": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachToRole": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addStatements": [
+                {}
+              ]
+            }
+          }
+        ],
+        "/StepFunctionStackFFunset/CrossAccountInvocationRoleFFunset/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrossAccountInvocationRoleFFunsetDefaultPolicyE2AC41C1"
+          }
+        ],
+        "/StepFunctionStackFFunset/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/StepFunctionStackFFunset/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "StepFunctionStackFFunset"
+    },
+    "PipelineStackFFunset.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "PipelineStackFFunset.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "PipelineStackFFunset": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://924310372990/us-east-1",
+      "properties": {
+        "templateFile": "PipelineStackFFunset.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::924310372990:role/cdk-hnb659fds-deploy-role-924310372990-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::924310372990:role/cdk-hnb659fds-cfn-exec-role-924310372990-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-924310372990-us-east-1/ad66324f9e00d9d5ad0c9f6693a063ce59e4321647df98b32c1a1c4b92a52742.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "PipelineStackFFunset.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::924310372990:role/cdk-hnb659fds-lookup-role-924310372990-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "StepFunctionStackFFunset",
+        "PipelineStackFFunset.assets"
+      ],
+      "metadata": {
+        "/PipelineStackFFunset/CrossAccountPipelineFFunset": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "pipelineName": "*"
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addStage": [
+                {
+                  "stageName": "*"
+                }
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addStage": [
+                {
+                  "stageName": "*"
+                }
+              ]
+            }
+          }
+        ],
+        "/PipelineStackFFunset/CrossAccountPipelineFFunset/ArtifactsBucket": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "bucketName": "*",
+              "encryptionKey": "*",
+              "encryption": "KMS_MANAGED",
+              "enforceSSL": true,
+              "blockPublicAccess": "*",
+              "removalPolicy": "retain"
+            }
+          }
+        ],
+        "/PipelineStackFFunset/CrossAccountPipelineFFunset/ArtifactsBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrossAccountPipelineFFunsetArtifactsBucket8F24FBE6"
+          }
+        ],
+        "/PipelineStackFFunset/CrossAccountPipelineFFunset/ArtifactsBucket/Policy": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "bucket": "*"
+            }
+          }
+        ],
+        "/PipelineStackFFunset/CrossAccountPipelineFFunset/ArtifactsBucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrossAccountPipelineFFunsetArtifactsBucketPolicy832FDCBC"
+          }
+        ],
+        "/PipelineStackFFunset/CrossAccountPipelineFFunset/Role": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "assumedBy": {
+                "principalAccount": "*",
+                "assumeRoleAction": "*"
+              },
+              "roleName": "*"
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addToPrincipalPolicy": [
+                {}
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachInlinePolicy": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachInlinePolicy": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addToPrincipalPolicy": [
+                {}
+              ]
+            }
+          }
+        ],
+        "/PipelineStackFFunset/CrossAccountPipelineFFunset/Role/ImportRole": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          }
+        ],
+        "/PipelineStackFFunset/CrossAccountPipelineFFunset/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrossAccountPipelineFFunsetRole3426BA27"
+          }
+        ],
+        "/PipelineStackFFunset/CrossAccountPipelineFFunset/Role/DefaultPolicy": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachToRole": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachToRole": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addStatements": [
+                {}
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addStatements": [
+                {}
+              ]
+            }
+          }
+        ],
+        "/PipelineStackFFunset/CrossAccountPipelineFFunset/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrossAccountPipelineFFunsetRoleDefaultPolicy454A72F5"
+          }
+        ],
+        "/PipelineStackFFunset/CrossAccountPipelineFFunset/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrossAccountPipelineFFunset88731C36"
+          }
+        ],
+        "/PipelineStackFFunset/CrossAccountPipelineFFunset/Source/GitHub_Source/WebhookResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrossAccountPipelineFFunsetSourceGitHubSourceWebhookResource9B136B5C"
+          }
+        ],
+        "/PipelineStackFFunset/CrossAccountPipelineFFunset/TriggerStepFunctionFFunset/InvokeStepFunctionFFunset/CodePipelineActionRole": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "assumedBy": {
+                "principalAccount": "*",
+                "assumeRoleAction": "*"
+              }
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "grantAssumeRole": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "grant": [
+                "*",
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addToPolicy": [
+                {}
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addToPrincipalPolicy": [
+                {}
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachInlinePolicy": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachInlinePolicy": [
+                "*"
+              ]
+            }
+          }
+        ],
+        "/PipelineStackFFunset/CrossAccountPipelineFFunset/TriggerStepFunctionFFunset/InvokeStepFunctionFFunset/CodePipelineActionRole/ImportCodePipelineActionRole": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          }
+        ],
+        "/PipelineStackFFunset/CrossAccountPipelineFFunset/TriggerStepFunctionFFunset/InvokeStepFunctionFFunset/CodePipelineActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrossAccountPipelineFFunsetTriggerStepFunctionFFunsetInvokeStepFunctionFFunsetCodePipelineActionRoleBC03D9D1"
+          }
+        ],
+        "/PipelineStackFFunset/CrossAccountPipelineFFunset/TriggerStepFunctionFFunset/InvokeStepFunctionFFunset/CodePipelineActionRole/DefaultPolicy": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachToRole": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachToRole": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addStatements": [
+                {}
+              ]
+            }
+          }
+        ],
+        "/PipelineStackFFunset/CrossAccountPipelineFFunset/TriggerStepFunctionFFunset/InvokeStepFunctionFFunset/CodePipelineActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CrossAccountPipelineFFunsetTriggerStepFunctionFFunsetInvokeStepFunctionFFunsetCodePipelineActionRoleDefaultPolicy67093BE5"
+          }
+        ],
+        "/PipelineStackFFunset/TriggerStepFunctionProjectFFunset": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {}
+          },
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {}
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {}
+          }
+        ],
+        "/PipelineStackFFunset/TriggerStepFunctionProjectFFunset/Role": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "roleName": "*",
+              "assumedBy": {
+                "principalAccount": "*",
+                "assumeRoleAction": "*"
+              }
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addToPrincipalPolicy": [
+                {}
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachInlinePolicy": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachInlinePolicy": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addToPrincipalPolicy": [
+                {}
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addToPrincipalPolicy": [
+                {}
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addToPrincipalPolicy": [
+                {}
+              ]
+            }
+          }
+        ],
+        "/PipelineStackFFunset/TriggerStepFunctionProjectFFunset/Role/ImportRole": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          }
+        ],
+        "/PipelineStackFFunset/TriggerStepFunctionProjectFFunset/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TriggerStepFunctionProjectFFunsetRole346E24AB"
+          }
+        ],
+        "/PipelineStackFFunset/TriggerStepFunctionProjectFFunset/Role/DefaultPolicy": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachToRole": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachToRole": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addStatements": [
+                {}
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addStatements": [
+                {}
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addStatements": [
+                {}
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addStatements": [
+                {}
+              ]
+            }
+          }
+        ],
+        "/PipelineStackFFunset/TriggerStepFunctionProjectFFunset/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TriggerStepFunctionProjectFFunsetRoleDefaultPolicyFCDBC611"
+          }
+        ],
+        "/PipelineStackFFunset/TriggerStepFunctionProjectFFunset/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TriggerStepFunctionProjectFFunset699CA9BD"
+          }
+        ],
+        "/PipelineStackFFunset/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/PipelineStackFFunset/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "PipelineStackFFunset"
+    },
+    "CodePipelineSFActionTestFFunsetDefaultTestDeployAssertFABBFD08.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "CodePipelineSFActionTestFFunsetDefaultTestDeployAssertFABBFD08.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "CodePipelineSFActionTestFFunsetDefaultTestDeployAssertFABBFD08": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "CodePipelineSFActionTestFFunsetDefaultTestDeployAssertFABBFD08.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/21fbb51d7b23f6a6c262b46a9caee79d744a3ac019fd45422d988b96d44b2a22.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "CodePipelineSFActionTestFFunsetDefaultTestDeployAssertFABBFD08.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "CodePipelineSFActionTestFFunsetDefaultTestDeployAssertFABBFD08.assets"
+      ],
+      "metadata": {
+        "/CodePipelineSFActionTestFFunset/DefaultTest/DeployAssert/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/CodePipelineSFActionTestFFunset/DefaultTest/DeployAssert/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "CodePipelineSFActionTestFFunset/DefaultTest/DeployAssert"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

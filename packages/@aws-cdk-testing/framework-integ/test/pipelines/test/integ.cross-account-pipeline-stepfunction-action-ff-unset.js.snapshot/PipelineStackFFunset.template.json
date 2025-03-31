@@ -1,0 +1,490 @@
+{
+ "Resources": {
+  "CrossAccountPipelineFFunsetArtifactsBucket8F24FBE6": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "BucketEncryption": {
+     "ServerSideEncryptionConfiguration": [
+      {
+       "ServerSideEncryptionByDefault": {
+        "SSEAlgorithm": "aws:kms"
+       }
+      }
+     ]
+    },
+    "PublicAccessBlockConfiguration": {
+     "BlockPublicAcls": true,
+     "BlockPublicPolicy": true,
+     "IgnorePublicAcls": true,
+     "RestrictPublicBuckets": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain"
+  },
+  "CrossAccountPipelineFFunsetArtifactsBucketPolicy832FDCBC": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "CrossAccountPipelineFFunsetArtifactsBucket8F24FBE6"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:*",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": "false"
+        }
+       },
+       "Effect": "Deny",
+       "Principal": {
+        "AWS": "*"
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "CrossAccountPipelineFFunsetArtifactsBucket8F24FBE6",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "CrossAccountPipelineFFunsetArtifactsBucket8F24FBE6",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   }
+  },
+  "CrossAccountPipelineFFunsetRole3426BA27": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "codepipeline.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   }
+  },
+  "CrossAccountPipelineFFunsetRoleDefaultPolicy454A72F5": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:Abort*",
+        "s3:DeleteObject*",
+        "s3:GetBucket*",
+        "s3:GetObject*",
+        "s3:List*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "CrossAccountPipelineFFunsetArtifactsBucket8F24FBE6",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "CrossAccountPipelineFFunsetArtifactsBucket8F24FBE6",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "CrossAccountPipelineFFunsetTriggerStepFunctionFFunsetInvokeStepFunctionFFunsetCodePipelineActionRoleBC03D9D1",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "CrossAccountPipelineFFunsetRoleDefaultPolicy454A72F5",
+    "Roles": [
+     {
+      "Ref": "CrossAccountPipelineFFunsetRole3426BA27"
+     }
+    ]
+   }
+  },
+  "CrossAccountPipelineFFunset88731C36": {
+   "Type": "AWS::CodePipeline::Pipeline",
+   "Properties": {
+    "ArtifactStore": {
+     "Location": {
+      "Ref": "CrossAccountPipelineFFunsetArtifactsBucket8F24FBE6"
+     },
+     "Type": "S3"
+    },
+    "Name": "CrossAccountPipelineFFunset",
+    "PipelineType": "V2",
+    "RoleArn": {
+     "Fn::GetAtt": [
+      "CrossAccountPipelineFFunsetRole3426BA27",
+      "Arn"
+     ]
+    },
+    "Stages": [
+     {
+      "Actions": [
+       {
+        "ActionTypeId": {
+         "Category": "Source",
+         "Owner": "ThirdParty",
+         "Provider": "GitHub",
+         "Version": "1"
+        },
+        "Configuration": {
+         "Owner": "QuantumNeuralCoder",
+         "Repo": "my-simple-cdkapp",
+         "Branch": "main",
+         "OAuthToken": "{{resolve:secretsmanager:github-token:SecretString:::}}",
+         "PollForSourceChanges": false
+        },
+        "Name": "GitHub_Source",
+        "OutputArtifacts": [
+         {
+          "Name": "Artifact_Source_GitHub_Source"
+         }
+        ],
+        "RunOrder": 1
+       }
+      ],
+      "Name": "Source"
+     },
+     {
+      "Actions": [
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "TriggerStepFunctionProjectFFunset699CA9BD"
+         }
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Artifact_Source_GitHub_Source"
+         }
+        ],
+        "Name": "InvokeStepFunctionFFunset",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "CrossAccountPipelineFFunsetTriggerStepFunctionFFunsetInvokeStepFunctionFFunsetCodePipelineActionRoleBC03D9D1",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       }
+      ],
+      "Name": "TriggerStepFunctionFFunset"
+     }
+    ]
+   },
+   "DependsOn": [
+    "CrossAccountPipelineFFunsetRoleDefaultPolicy454A72F5",
+    "CrossAccountPipelineFFunsetRole3426BA27"
+   ]
+  },
+  "CrossAccountPipelineFFunsetSourceGitHubSourceWebhookResource9B136B5C": {
+   "Type": "AWS::CodePipeline::Webhook",
+   "Properties": {
+    "Authentication": "GITHUB_HMAC",
+    "AuthenticationConfiguration": {
+     "SecretToken": "{{resolve:secretsmanager:github-token:SecretString:::}}"
+    },
+    "Filters": [
+     {
+      "JsonPath": "$.ref",
+      "MatchEquals": "refs/heads/{Branch}"
+     }
+    ],
+    "RegisterWithThirdParty": true,
+    "TargetAction": "GitHub_Source",
+    "TargetPipeline": {
+     "Ref": "CrossAccountPipelineFFunset88731C36"
+    },
+    "TargetPipelineVersion": 1
+   }
+  },
+  "CrossAccountPipelineFFunsetTriggerStepFunctionFFunsetInvokeStepFunctionFFunsetCodePipelineActionRoleBC03D9D1": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": "arn:aws:iam::924310372990:root"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   }
+  },
+  "CrossAccountPipelineFFunsetTriggerStepFunctionFFunsetInvokeStepFunctionFFunsetCodePipelineActionRoleDefaultPolicy67093BE5": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "TriggerStepFunctionProjectFFunset699CA9BD",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "CrossAccountPipelineFFunsetTriggerStepFunctionFFunsetInvokeStepFunctionFFunsetCodePipelineActionRoleDefaultPolicy67093BE5",
+    "Roles": [
+     {
+      "Ref": "CrossAccountPipelineFFunsetTriggerStepFunctionFFunsetInvokeStepFunctionFFunsetCodePipelineActionRoleBC03D9D1"
+     }
+    ]
+   }
+  },
+  "TriggerStepFunctionProjectFFunsetRole346E24AB": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "codebuild.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   }
+  },
+  "TriggerStepFunctionProjectFFunsetRoleDefaultPolicyFCDBC611": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:aws:logs:us-east-1:924310372990:log-group:/aws/codebuild/",
+           {
+            "Ref": "TriggerStepFunctionProjectFFunset699CA9BD"
+           },
+           ":*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:aws:logs:us-east-1:924310372990:log-group:/aws/codebuild/",
+           {
+            "Ref": "TriggerStepFunctionProjectFFunset699CA9BD"
+           }
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "codebuild:BatchPutCodeCoverages",
+        "codebuild:BatchPutTestCases",
+        "codebuild:CreateReport",
+        "codebuild:CreateReportGroup",
+        "codebuild:UpdateReport"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:aws:codebuild:us-east-1:924310372990:report-group/",
+          {
+           "Ref": "TriggerStepFunctionProjectFFunset699CA9BD"
+          },
+          "-*"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Resource": "arn:aws:iam::813021164746:role/StepFunctionInvocationRoleFFunset"
+      },
+      {
+       "Action": [
+        "s3:GetBucket*",
+        "s3:GetObject*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "CrossAccountPipelineFFunsetArtifactsBucket8F24FBE6",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "CrossAccountPipelineFFunsetArtifactsBucket8F24FBE6",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "TriggerStepFunctionProjectFFunsetRoleDefaultPolicyFCDBC611",
+    "Roles": [
+     {
+      "Ref": "TriggerStepFunctionProjectFFunsetRole346E24AB"
+     }
+    ]
+   }
+  },
+  "TriggerStepFunctionProjectFFunset699CA9BD": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "EncryptionKey": "alias/aws/s3",
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "Image": "aws/codebuild/standard:5.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": true,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "TriggerStepFunctionProjectFFunsetRole346E24AB",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -y jq\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"echo \\\"Assuming cross-account role...\\\"\",\n        \"CREDS=$(aws sts assume-role --role-arn arn:aws:iam::813021164746:role/StepFunctionInvocationRoleFFunset --role-session-name CrossAccountInvokeSession)\",\n        \"export AWS_ACCESS_KEY_ID=$(echo $CREDS | jq -r '.Credentials.AccessKeyId')\",\n        \"export AWS_SECRET_ACCESS_KEY=$(echo $CREDS | jq -r '.Credentials.SecretAccessKey')\",\n        \"export AWS_SESSION_TOKEN=$(echo $CREDS | jq -r '.Credentials.SessionToken')\",\n        \"echo \\\"Starting Step Function execution...\\\"\",\n        \"aws stepfunctions start-execution --state-machine-arn arn:aws:states:us-east-1:813021164746:stateMachine:MyCrossAccountStateMachineFFunset --region us-east-1\"\n      ]\n    }\n  }\n}",
+     "Type": "CODEPIPELINE"
+    }
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

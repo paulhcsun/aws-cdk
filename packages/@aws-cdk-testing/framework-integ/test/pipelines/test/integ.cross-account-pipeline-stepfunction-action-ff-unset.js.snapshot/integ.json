@@ -1,0 +1,14 @@
+{
+  "version": "40.0.0",
+  "testCases": {
+    "CodePipelineSFActionTestFFunset/DefaultTest": {
+      "stacks": [
+        "StepFunctionStackFFunset",
+        "PipelineStackFFunset"
+      ],
+      "diffAssets": true,
+      "assertionStack": "CodePipelineSFActionTestFFunset/DefaultTest/DeployAssert",
+      "assertionStackName": "CodePipelineSFActionTestFFunsetDefaultTestDeployAssertFABBFD08"
+    }
+  }
+}

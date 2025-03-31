@@ -1,0 +1,20 @@
+{
+  "version": "40.0.0",
+  "files": {
+    "f5be94d71be4f01043c3779df3ca8cc4bc1a41e526dc6c1665efb694e2b4c8b6": {
+      "source": {
+        "path": "my28marCdkPipelineInvestigationStackdevAppStack52A588A8.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "924310372990-us-east-1": {
+          "bucketName": "cdk-hnb659fds-assets-924310372990-us-east-1",
+          "objectKey": "f5be94d71be4f01043c3779df3ca8cc4bc1a41e526dc6c1665efb694e2b4c8b6.json",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::924310372990:role/cdk-hnb659fds-file-publishing-role-924310372990-us-east-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

@@ -1,28 +1,28 @@
 {
   "version": "40.0.0",
   "artifacts": {
-    "my26marmy27marscdwnDeployActionStack.assets": {
+    "my27marscdwnDeployActionStack.assets": {
       "type": "cdk:asset-manifest",
       "properties": {
-        "file": "my26marmy27marscdwnDeployActionStack.assets.json",
+        "file": "my27marscdwnDeployActionStack.assets.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
       }
     },
-    "my26marmy27marscdwnDeployActionStack": {
+    "my27marscdwnDeployActionStack": {
       "type": "aws:cloudformation:stack",
       "environment": "aws://813021164746/us-east-1",
       "properties": {
-        "templateFile": "my26marmy27marscdwnDeployActionStack.template.json",
+        "templateFile": "my27marscdwnDeployActionStack.template.json",
         "terminationProtection": false,
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::813021164746:role/cdk-hnb659fds-deploy-role-813021164746-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::813021164746:role/cdk-hnb659fds-cfn-exec-role-813021164746-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-813021164746-us-east-1/b16d846de564f31f55b35487e4e826f50c948a3f12cd532a0d5d31dc7a0ec7b6.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-813021164746-us-east-1/19251a31c91e7a5d75d23a8058d76f8b43eb9046f5581d01995b1f3859005150.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
-          "my26marmy27marscdwnDeployActionStack.assets"
+          "my27marscdwnDeployActionStack.assets"
         ],
         "lookupRole": {
           "arn": "arn:${AWS::Partition}:iam::813021164746:role/cdk-hnb659fds-lookup-role-813021164746-us-east-1",
@@ -31,10 +31,10 @@
         }
       },
       "dependencies": [
-        "my26marmy27marscdwnDeployActionStack.assets"
+        "my27marscdwnDeployActionStack.assets"
       ],
       "metadata": {
-        "/my26marmy27marscdwnDeployActionStack/my27marscdwnCrossAccountDeploymentRole": [
+        "/my27marscdwnDeployActionStack/scdwnfrCrossAccountDeploymentRole": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": {
@@ -42,7 +42,8 @@
               "assumedBy": {
                 "principalAccount": "*",
                 "assumeRoleAction": "*"
-              }
+              },
+              "inlinePolicies": "*"
             }
           },
           {
@@ -127,19 +128,19 @@
             }
           }
         ],
-        "/my26marmy27marscdwnDeployActionStack/my27marscdwnCrossAccountDeploymentRole/Importmy27marscdwnCrossAccountDeploymentRole": [
+        "/my27marscdwnDeployActionStack/scdwnfrCrossAccountDeploymentRole/ImportscdwnfrCrossAccountDeploymentRole": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": "*"
           }
         ],
-        "/my26marmy27marscdwnDeployActionStack/my27marscdwnCrossAccountDeploymentRole/Resource": [
+        "/my27marscdwnDeployActionStack/scdwnfrCrossAccountDeploymentRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "my27marscdwnCrossAccountDeploymentRoleE985058F"
+            "data": "scdwnfrCrossAccountDeploymentRole746CD2C7"
           }
         ],
-        "/my26marmy27marscdwnDeployActionStack/my27marscdwnCrossAccountDeploymentRole/DefaultPolicy": [
+        "/my27marscdwnDeployActionStack/scdwnfrCrossAccountDeploymentRole/DefaultPolicy": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": "*"
@@ -193,13 +194,13 @@
             }
           }
         ],
-        "/my26marmy27marscdwnDeployActionStack/my27marscdwnCrossAccountDeploymentRole/DefaultPolicy/Resource": [
+        "/my27marscdwnDeployActionStack/scdwnfrCrossAccountDeploymentRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "my27marscdwnCrossAccountDeploymentRoleDefaultPolicyE731EEB4"
+            "data": "scdwnfrCrossAccountDeploymentRoleDefaultPolicy1ED38D67"
           }
         ],
-        "/my26marmy27marscdwnDeployActionStack/my26marmy27marscdwnCodePipelineActionAppStackMyPipelineCEE1280A-Deploy-Deploy-DeploymentRole": [
+        "/my27marscdwnDeployActionStack/my27marscdwnCodePipelineActionAppStackMyPipeline9553AF91-Deploy-Deploy-DeploymentRole": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": {
@@ -243,19 +244,19 @@
             }
           }
         ],
-        "/my26marmy27marscdwnDeployActionStack/my26marmy27marscdwnCodePipelineActionAppStackMyPipelineCEE1280A-Deploy-Deploy-DeploymentRole/Importmy26marmy27marscdwnCodePipelineActionAppStackMyPipelineCEE1280A-Deploy-Deploy-DeploymentRole": [
+        "/my27marscdwnDeployActionStack/my27marscdwnCodePipelineActionAppStackMyPipeline9553AF91-Deploy-Deploy-DeploymentRole/Importmy27marscdwnCodePipelineActionAppStackMyPipeline9553AF91-Deploy-Deploy-DeploymentRole": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": "*"
           }
         ],
-        "/my26marmy27marscdwnDeployActionStack/my26marmy27marscdwnCodePipelineActionAppStackMyPipelineCEE1280A-Deploy-Deploy-DeploymentRole/Resource": [
+        "/my27marscdwnDeployActionStack/my27marscdwnCodePipelineActionAppStackMyPipeline9553AF91-Deploy-Deploy-DeploymentRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "my26marmy27marscdwnCodePipelineActionAppStackMyPipelineCEE1280ADeployDeployDeploymentRole251C411D"
+            "data": "my27marscdwnCodePipelineActionAppStackMyPipeline9553AF91DeployDeployDeploymentRoleF5480086"
           }
         ],
-        "/my26marmy27marscdwnDeployActionStack/my26marmy27marscdwnCodePipelineActionAppStackMyPipelineCEE1280A-Deploy-Deploy-DeploymentRole/DefaultPolicy": [
+        "/my27marscdwnDeployActionStack/my27marscdwnCodePipelineActionAppStackMyPipeline9553AF91-Deploy-Deploy-DeploymentRole/DefaultPolicy": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": "*"
@@ -293,49 +294,49 @@
             }
           }
         ],
-        "/my26marmy27marscdwnDeployActionStack/my26marmy27marscdwnCodePipelineActionAppStackMyPipelineCEE1280A-Deploy-Deploy-DeploymentRole/DefaultPolicy/Resource": [
+        "/my27marscdwnDeployActionStack/my27marscdwnCodePipelineActionAppStackMyPipeline9553AF91-Deploy-Deploy-DeploymentRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "my26marmy27marscdwnCodePipelineActionAppStackMyPipelineCEE1280ADeployDeployDeploymentRoleDefaultPolicy91BF5CB7"
+            "data": "my27marscdwnCodePipelineActionAppStackMyPipeline9553AF91DeployDeployDeploymentRoleDefaultPolicy27EF603D"
           }
         ],
-        "/my26marmy27marscdwnDeployActionStack/BootstrapVersion": [
+        "/my27marscdwnDeployActionStack/BootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BootstrapVersion"
           }
         ],
-        "/my26marmy27marscdwnDeployActionStack/CheckBootstrapVersion": [
+        "/my27marscdwnDeployActionStack/CheckBootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CheckBootstrapVersion"
           }
         ]
       },
-      "displayName": "my26marmy27marscdwnDeployActionStack"
+      "displayName": "my27marscdwnDeployActionStack"
     },
-    "my26marmy27marscdwnCodePipelineActionAppStack.assets": {
+    "my27marscdwnCodePipelineActionAppStack.assets": {
       "type": "cdk:asset-manifest",
       "properties": {
-        "file": "my26marmy27marscdwnCodePipelineActionAppStack.assets.json",
+        "file": "my27marscdwnCodePipelineActionAppStack.assets.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
       }
     },
-    "my26marmy27marscdwnCodePipelineActionAppStack": {
+    "my27marscdwnCodePipelineActionAppStack": {
       "type": "aws:cloudformation:stack",
       "environment": "aws://924310372990/us-east-1",
       "properties": {
-        "templateFile": "my26marmy27marscdwnCodePipelineActionAppStack.template.json",
+        "templateFile": "my27marscdwnCodePipelineActionAppStack.template.json",
         "terminationProtection": false,
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::924310372990:role/cdk-hnb659fds-deploy-role-924310372990-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::924310372990:role/cdk-hnb659fds-cfn-exec-role-924310372990-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-924310372990-us-east-1/fa280eecc31584597a1facf4753d10d075364637b5822a6c8beaa910cfb8f78b.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-924310372990-us-east-1/73ba354aa9ed9df35fc2354dad3551e2669cfd010a15a1e8502fa17f130e96fb.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
-          "my26marmy27marscdwnCodePipelineActionAppStack.assets"
+          "my27marscdwnCodePipelineActionAppStack.assets"
         ],
         "lookupRole": {
           "arn": "arn:${AWS::Partition}:iam::924310372990:role/cdk-hnb659fds-lookup-role-924310372990-us-east-1",
@@ -344,23 +345,23 @@
         }
       },
       "dependencies": [
-        "my26marmy27marscdwnDeployActionStack",
-        "my26marmy27marscdwnCodePipelineActionAppStack.assets"
+        "my27marscdwnDeployActionStack",
+        "my27marscdwnCodePipelineActionAppStack.assets"
       ],
       "metadata": {
-        "/my26marmy27marscdwnCodePipelineActionAppStack/ArtifactBucketKey": [
+        "/my27marscdwnCodePipelineActionAppStack/ArtifactBucketKey": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": "*"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/ArtifactBucketKey/Resource": [
+        "/my27marscdwnCodePipelineActionAppStack/ArtifactBucketKey/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "ArtifactBucketKey7866DC41"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/my27marscdwnArtifactBucket": [
+        "/my27marscdwnCodePipelineActionAppStack/my27marscdwnArtifactBucket": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": {
@@ -372,13 +373,13 @@
             }
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/my27marscdwnArtifactBucket/Resource": [
+        "/my27marscdwnCodePipelineActionAppStack/my27marscdwnArtifactBucket/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "my27marscdwnArtifactBucketB006003D"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/my27marscdwnArtifactBucket/Policy": [
+        "/my27marscdwnCodePipelineActionAppStack/my27marscdwnArtifactBucket/Policy": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": {
@@ -386,43 +387,43 @@
             }
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/my27marscdwnArtifactBucket/Policy/Resource": [
+        "/my27marscdwnCodePipelineActionAppStack/my27marscdwnArtifactBucket/Policy/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "my27marscdwnArtifactBucketPolicyC1E4F9C2"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/my27marscdwnArtifactBucket/AutoDeleteObjectsCustomResource": [
+        "/my27marscdwnCodePipelineActionAppStack/my27marscdwnArtifactBucket/AutoDeleteObjectsCustomResource": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": "*"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/my27marscdwnArtifactBucket/AutoDeleteObjectsCustomResource/Default": [
+        "/my27marscdwnCodePipelineActionAppStack/my27marscdwnArtifactBucket/AutoDeleteObjectsCustomResource/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "my27marscdwnArtifactBucketAutoDeleteObjectsCustomResource5416E01D"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/Custom::S3AutoDeleteObjectsCustomResourceProvider": [
+        "/my27marscdwnCodePipelineActionAppStack/Custom::S3AutoDeleteObjectsCustomResourceProvider": [
           {
             "type": "aws:cdk:is-custom-resource-handler-customResourceProvider",
             "data": true
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+        "/my27marscdwnCodePipelineActionAppStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+        "/my27marscdwnCodePipelineActionAppStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/my27marscdwnSynthProject": [
+        "/my27marscdwnCodePipelineActionAppStack/my27marscdwnSynthProject": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": {}
@@ -436,7 +437,7 @@
             "data": {}
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/my27marscdwnSynthProject/Role": [
+        "/my27marscdwnCodePipelineActionAppStack/my27marscdwnSynthProject/Role": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": {
@@ -512,19 +513,19 @@
             }
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/my27marscdwnSynthProject/Role/ImportRole": [
+        "/my27marscdwnCodePipelineActionAppStack/my27marscdwnSynthProject/Role/ImportRole": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": "*"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/my27marscdwnSynthProject/Role/Resource": [
+        "/my27marscdwnCodePipelineActionAppStack/my27marscdwnSynthProject/Role/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "my27marscdwnSynthProjectRole2FCBA3F0"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/my27marscdwnSynthProject/Role/DefaultPolicy": [
+        "/my27marscdwnCodePipelineActionAppStack/my27marscdwnSynthProject/Role/DefaultPolicy": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": "*"
@@ -594,19 +595,19 @@
             }
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/my27marscdwnSynthProject/Role/DefaultPolicy/Resource": [
+        "/my27marscdwnCodePipelineActionAppStack/my27marscdwnSynthProject/Role/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "my27marscdwnSynthProjectRoleDefaultPolicy1DFA9C51"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/my27marscdwnSynthProject/Resource": [
+        "/my27marscdwnCodePipelineActionAppStack/my27marscdwnSynthProject/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "my27marscdwnSynthProjectAEDB5294"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/MyPipeline": [
+        "/my27marscdwnCodePipelineActionAppStack/MyPipeline": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": {
@@ -672,7 +673,7 @@
             }
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/MyPipeline/Role": [
+        "/my27marscdwnCodePipelineActionAppStack/MyPipeline/Role": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": {
@@ -740,19 +741,19 @@
             }
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/MyPipeline/Role/ImportRole": [
+        "/my27marscdwnCodePipelineActionAppStack/MyPipeline/Role/ImportRole": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": "*"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/MyPipeline/Role/Resource": [
+        "/my27marscdwnCodePipelineActionAppStack/MyPipeline/Role/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyPipelineRoleC0D47CA4"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/MyPipeline/Role/DefaultPolicy": [
+        "/my27marscdwnCodePipelineActionAppStack/MyPipeline/Role/DefaultPolicy": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": "*"
@@ -814,25 +815,25 @@
             }
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/MyPipeline/Role/DefaultPolicy/Resource": [
+        "/my27marscdwnCodePipelineActionAppStack/MyPipeline/Role/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyPipelineRoleDefaultPolicy34F09EFA"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/MyPipeline/Resource": [
+        "/my27marscdwnCodePipelineActionAppStack/MyPipeline/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyPipelineAED38ECF"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/MyPipeline/Source/GitHub_Source/WebhookResource": [
+        "/my27marscdwnCodePipelineActionAppStack/MyPipeline/Source/GitHub_Source/WebhookResource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyPipelineSourceGitHubSourceWebhookResourceE616042B"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/MyPipeline/Build/Synth_CDK/CodePipelineActionRole": [
+        "/my27marscdwnCodePipelineActionAppStack/MyPipeline/Build/Synth_CDK/CodePipelineActionRole": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": {
@@ -892,19 +893,19 @@
             }
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/MyPipeline/Build/Synth_CDK/CodePipelineActionRole/ImportCodePipelineActionRole": [
+        "/my27marscdwnCodePipelineActionAppStack/MyPipeline/Build/Synth_CDK/CodePipelineActionRole/ImportCodePipelineActionRole": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": "*"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/MyPipeline/Build/Synth_CDK/CodePipelineActionRole/Resource": [
+        "/my27marscdwnCodePipelineActionAppStack/MyPipeline/Build/Synth_CDK/CodePipelineActionRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyPipelineBuildSynthCDKCodePipelineActionRoleEDDB055D"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/MyPipeline/Build/Synth_CDK/CodePipelineActionRole/DefaultPolicy": [
+        "/my27marscdwnCodePipelineActionAppStack/MyPipeline/Build/Synth_CDK/CodePipelineActionRole/DefaultPolicy": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": "*"
@@ -934,26 +935,26 @@
             }
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/MyPipeline/Build/Synth_CDK/CodePipelineActionRole/DefaultPolicy/Resource": [
+        "/my27marscdwnCodePipelineActionAppStack/MyPipeline/Build/Synth_CDK/CodePipelineActionRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyPipelineBuildSynthCDKCodePipelineActionRoleDefaultPolicyA197351C"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/BootstrapVersion": [
+        "/my27marscdwnCodePipelineActionAppStack/BootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BootstrapVersion"
           }
         ],
-        "/my26marmy27marscdwnCodePipelineActionAppStack/CheckBootstrapVersion": [
+        "/my27marscdwnCodePipelineActionAppStack/CheckBootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CheckBootstrapVersion"
           }
         ]
       },
-      "displayName": "my26marmy27marscdwnCodePipelineActionAppStack"
+      "displayName": "my27marscdwnCodePipelineActionAppStack"
     },
     "my27marscdwnCdkCodePipelineActionTestDefaultTestDeployAssert5B33499A.assets": {
       "type": "cdk:asset-manifest",

@@ -21,8 +21,8 @@
        "Effect": "Allow",
        "Principal": {
         "AWS": [
-         "arn:aws:iam::813021164746:role/my26marmy27marscdwndeployoydeploymentrole84450d23e0169ecf6a0d",
-         "arn:aws:iam::813021164746:role/my27marscdwnCrossAccountDeploymentRole"
+         "arn:aws:iam::813021164746:role/my27marscdwndeployactionsoydeploymentrolecd3ceb30fc2f4b52cde4",
+         "arn:aws:iam::813021164746:role/scdwnfrCrossAccountDeploymentRole"
         ]
        },
        "Resource": "*"
@@ -122,8 +122,8 @@
        "Effect": "Allow",
        "Principal": {
         "AWS": [
-         "arn:aws:iam::813021164746:role/my26marmy27marscdwndeployoydeploymentrole84450d23e0169ecf6a0d",
-         "arn:aws:iam::813021164746:role/my27marscdwnCrossAccountDeploymentRole"
+         "arn:aws:iam::813021164746:role/my27marscdwndeployactionsoydeploymentrolecd3ceb30fc2f4b52cde4",
+         "arn:aws:iam::813021164746:role/scdwnfrCrossAccountDeploymentRole"
         ]
        },
        "Resource": [
@@ -492,7 +492,7 @@
        "Action": "sts:AssumeRole",
        "Effect": "Allow",
        "Resource": [
-        "arn:aws:iam::813021164746:role/my27marscdwnCrossAccountDeploymentRole",
+        "arn:aws:iam::813021164746:role/scdwnfrCrossAccountDeploymentRole",
         {
          "Fn::GetAtt": [
           "MyPipelineBuildSynthCDKCodePipelineActionRoleEDDB055D",
@@ -612,7 +612,7 @@
         },
         "Configuration": {
          "StackName": "my27marscdwnMyCrossAccountStack",
-         "RoleArn": "arn:aws:iam::813021164746:role/my26marmy27marscdwndeployoydeploymentrole84450d23e0169ecf6a0d",
+         "RoleArn": "arn:aws:iam::813021164746:role/my27marscdwndeployactionsoydeploymentrolecd3ceb30fc2f4b52cde4",
          "ActionMode": "CREATE_UPDATE",
          "TemplatePath": "Artifact_Build_Synth_CDK::MySimpleCdkappStack.template.json"
         },
@@ -622,7 +622,7 @@
          }
         ],
         "Name": "Deploy",
-        "RoleArn": "arn:aws:iam::813021164746:role/my27marscdwnCrossAccountDeploymentRole",
+        "RoleArn": "arn:aws:iam::813021164746:role/scdwnfrCrossAccountDeploymentRole",
         "RunOrder": 1
        }
       ],

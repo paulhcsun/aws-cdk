@@ -118,14 +118,68 @@ export class TargetAccountRoleStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    // In TargetAccountRoleStack
-    const crossAccountRole = new iam.Role(this, 'my27marscdwnCrossAccountDeploymentRole', {
-      roleName: 'my27marscdwnCrossAccountDeploymentRole',
-      assumedBy: new iam.CompositePrincipal(
-        new iam.ServicePrincipal('codepipeline.amazonaws.com'),
-        new iam.AccountPrincipal('924310372990'),
-      ),
+    const trustedAccountId = '924310372990'; // Pipeline account
+
+    const crossAccountRole = new iam.Role(this, 'scdwnfrCrossAccountDeploymentRole', {
+      roleName: 'scdwnfrCrossAccountDeploymentRole',
+      assumedBy: new iam.AccountPrincipal(trustedAccountId),
+      inlinePolicies: {
+        CloudFormationDeployment: new iam.PolicyDocument({
+          statements: [
+            new iam.PolicyStatement({
+              effect: iam.Effect.ALLOW,
+              actions: [
+                'cloudformation:CreateStack',
+                'cloudformation:UpdateStack',
+                'cloudformation:DeleteStack',
+                'cloudformation:DescribeStacks',
+                'cloudformation:DescribeStackEvents',
+                'cloudformation:GetTemplateSummary',
+                'cloudformation:ValidateTemplate',
+              ],
+              resources: [`arn:aws:cloudformation:${this.region}:${this.account}:stack/*`],
+            }),
+            new iam.PolicyStatement({
+              effect: iam.Effect.ALLOW,
+              actions: [
+                'ssm:GetParameter',
+                'ssm:GetParameters',
+                'ssm:GetParametersByPath',
+              ],
+              resources: [
+                `arn:aws:ssm:${this.region}:${this.account}:parameter/cdk-bootstrap/*`,
+              ],
+            }),
+            new iam.PolicyStatement({
+              effect: iam.Effect.ALLOW,
+              actions: [
+                's3:GetObject',
+                's3:PutObject',
+                's3:ListBucket',
+              ],
+              resources: [
+                `arn:aws:s3:::cdk-hnb659fds-assets-${this.account}-${this.region}/*`,
+                `arn:aws:s3:::cdk-hnb659fds-assets-${this.account}-${this.region}`,
+              ],
+            }),
+            new iam.PolicyStatement({
+              effect: iam.Effect.ALLOW,
+              actions: [
+                'iam:GetRole',
+                'iam:CreateRole',
+                'iam:DeleteRole',
+                'iam:PutRolePolicy',
+                'iam:DeleteRolePolicy',
+                'iam:GetRolePolicy',
+                'iam:PassRole',
+              ],
+              resources: [`arn:aws:iam::${this.account}:role/*`],
+            }),
+          ],
+        }),
+      },
     });
+
     this.crossAccountRole = crossAccountRole;
   }
 }
@@ -135,11 +189,11 @@ const app = new cdk.App({
     '@aws-cdk/pipelines:reduceStageRoleTrustScope': true,
   },
 });
-const targetStack = new TargetAccountRoleStack(app, 'my26marmy27marscdwnDeployActionStack', {
+const targetStack = new TargetAccountRoleStack(app, 'my27marscdwnDeployActionStack', {
   env: { account: '813021164746', region: 'us-east-1' },
 });
 
-const sourceStack = new CodePipelineAppStack(app, 'my26marmy27marscdwnCodePipelineActionAppStack', {
+const sourceStack = new CodePipelineAppStack(app, 'my27marscdwnCodePipelineActionAppStack', {
   env: { account: '924310372990', region: 'us-east-1' },
   crossAccountRole: targetStack.crossAccountRole,
 });
