@@ -968,14 +968,15 @@ export class Pipeline extends PipelineBase {
     // generate a role in the other stack, that the Pipeline will assume for executing this action
     const isRemoveRootPrincipal = FeatureFlags.of(this).isEnabled(cxapi.PIPELINE_REDUCE_STAGE_ROLE_TRUST_SCOPE);
     const roleProps = isRemoveRootPrincipal? {
-      assumedBy: new iam.PrincipalWithConditions(
-        new iam.AccountPrincipal(pipelineStack.account),
-        {
-          IpAddress: {
-            'aws:SourceIp': 'codepipeline.amazonaws.com',
-          },
-        },
-      ),
+      // assumedBy: new iam.PrincipalWithConditions(
+      //   new iam.AccountPrincipal(pipelineStack.account),
+      //   {
+      //     IpAddress: {
+      //       'aws:SourceIp': 'codepipeline.amazonaws.com',
+      //     },
+      //   },
+      // ),
+      assumedBy: new iam.ArnPrincipal(this.role.roleArn),
       roleName: PhysicalName.GENERATE_IF_NEEDED,
     } : {
       assumedBy: new iam.AccountPrincipal(pipelineStack.account),
